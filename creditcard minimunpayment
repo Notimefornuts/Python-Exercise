@@ -1,0 +1,24 @@
+#edx problem 3
+
+monthlyinterest=annualInterestRate/12.0
+lowerbound=balance/12.0
+upperbound=(balance*(1+monthlyinterest)**12)/12.0
+minimumpayment=(upperbound+lowerbound)/2.0
+newbalance=balance
+epsilon=0.01
+while abs(newbalance)>epsilon:
+	
+	newbalance=balance
+	
+	for month in range(12):
+		monthlyunpaid=newbalance-minimumpayment
+		newbalance=monthlyunpaid+monthlyinterest*monthlyunpaid
+		
+	if newbalance>0:
+		lowerbound=minimumpayment
+	elif newbalance<0:
+		upperbound=minimumpayment
+	else:
+		break
+	minimumpayment=(upperbound+lowerbound)/2.0
+print 'Lowest Payment: '+ str(round(minimumpayment,2))
