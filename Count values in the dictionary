@@ -16,3 +16,8 @@ def howMany(aDict):
         count=count+len(aDict[i])
     print count
 howMany(animals)
+
+
+#solution 2: 
+
+return sum(map(len,aDict.values()))
