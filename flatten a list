@@ -1,0 +1,7 @@
+def flatten(aList):
+    newlist=[]
+    for i in range(0, len(aList)):
+        if type(aList[i])==str or type(aList[i])==int:
+            newlist.append(aList[i])
+        else: newlist.extend(flatten(aList[i]))
+    return newlist
