@@ -1,0 +1,18 @@
+'''Print a staircase of height NN that consists of # symbols and spaces. For example for N=6N=6, here's a staircase of that height:
+
+     #
+    ##
+   ###
+  ####
+ #####
+######
+Note: The last line has 0 spaces before it.'''
+
+
+import sys
+
+
+n = int(raw_input().strip())
+for i in range(n):
+    print (" "*(n-i-1))+"#"*(i+1)
+##print without space use "+", print with space use","
