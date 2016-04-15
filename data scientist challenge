@@ -1,0 +1,33 @@
+import re
+import ast
+f=open('C:/Users/Yingcan/Desktop/access2.txt')
+data=f.read()
+result = re.findall(r'.*\[(.+)\].+article\_id\=(\d+)\&user_id\=(\d+).*',data) 
+f_out=open('C:/Users/Yingcan/Desktop/accessout.txt','w')
+for eachitem in result:
+	f_out.write(str(eachitem)+'\n')
+f_out.close()
+f2=open('C:/Users/Yingcan/Desktop/accessout.txt')
+#convert=ast.literal_eval(data_out)
+with f2 as myfile:
+	head = [next(myfile) for x in xrange(5)]
+	head=ast.literal_eval(head)
+print head
+#ast.literal_eval(data_out)
+
+import sqlite3
+import csv
+con = sqlite3.connect('C:/Users/Yingcan/Desktop/access.sqlite')
+cur = con.cursor()
+cur.execute("CREATE TABLE logfile2(dateandtime TEXT, articleid INT, userid TEXT)")
+data=[row.split('\t') for row in file('C:/Users/Yingcan/Desktop/res2.txt','r').readlines()]
+
+cur.executemany("INSERT INTO logfile2 (dateandtime, articleid, userid) VALUES (?, ?, ?);", data)
+con.commit()
+
+import csv
+with open('C:\Users\Yingcan\Desktop\dataanalysis2.csv')as csvfile:
+	reader=csv.reader(csvfile, dialect='excel')#field sperator "," quote character """
+	head = [next(csvfile) for x in xrange(10)]
+print head
+	
